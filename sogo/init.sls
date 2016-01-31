@@ -3,6 +3,7 @@
 include:
   - .{{ 'repo-v3' if sogo.use_v3 else 'repo-v2' }}
   - apache
+  - memcached
 
 sogo:
   pkg.installed:
