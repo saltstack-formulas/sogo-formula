@@ -18,7 +18,12 @@ Available states
 
 Installs the SOGo Groupware.
 
-``gocd.repo``
+``sogo.repo-v2``
 ------------
 
-Configures the SOGo repository.
+Configures the SOGo repository for version 2.
+
+``sogo.repo-v3``
+------------
+
+Configures the SOGo repository for version 3.
