@@ -1,0 +1,2 @@
+{% import_yaml 'sogo/defaults.yaml' as default_settings %}
+{% set sogo = salt['pillar.get']('sogo', default=default_settings.get('sogo'), merge=True) %}
