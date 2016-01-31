@@ -37,6 +37,8 @@ sogo-cronjob:
   file.managed:
     - name: /etc/cron.d/sogo
     - source: salt://sogo/files/sogo-cron
+    - require:
+      - pkg: sogo
 
 sogo-httpd:
   file.managed:
@@ -46,5 +48,7 @@ sogo-httpd:
     - defaults:
         url: {{ sogo.url }}
         port: {{ 443 if sogo.url.startswith('https') else 80 }}
+    - require:
+      - pkg: sogo
     - watch_in:
       - module: apache-reload
