@@ -3,3 +3,7 @@ books:
     git: "https://github.com/saltstack-formulas/apache-formula.git"
   - book: "srv/salt/apache"
     link: "../formulas/apache/apache"
+  - book: "srv/formulas/memcached"
+    git: "https://github.com/saltstack-formulas/memcached-formula.git"
+  - book: "srv/salt/memcached"
+    link: "../formulas/memcached/memcached"
