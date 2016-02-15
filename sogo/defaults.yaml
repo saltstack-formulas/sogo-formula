@@ -1,2 +1,8 @@
 sogo:
   use_v3: True
+  update_server:
+    dir: /var/www/sogo-update-server
+    plugins:
+      - id: sogo-connector@inverse.ca
+        version: 31.0.2
+        url: http://www.sogo.nu/files/downloads/SOGo/Thunderbird/sogo-connector-31.0.2.xpi

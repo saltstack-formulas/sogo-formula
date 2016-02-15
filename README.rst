@@ -14,16 +14,21 @@ Available states
     :local:
 
 ``sogo``
-------------
+--------
 
 Installs the SOGo Groupware.
 
 ``sogo.repo-v2``
-------------
+----------------
 
 Configures the SOGo repository for version 2.
 
 ``sogo.repo-v3``
-------------
+----------------
 
 Configures the SOGo repository for version 3.
+
+``sogo.update-server``
+----------------------
+
+Installs the SOGo update server, which can be used to automatically install Mozilla Thunderbird extensions.

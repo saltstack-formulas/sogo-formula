@@ -1,0 +1,14 @@
+Alias /mozilla-plugins {{ config.dir }}
+
+<Directory {{ config.dir }}>
+    AllowOverride None
+    Options -Indexes
+
+    <IfVersion < 2.4>      
+        Order deny,allow
+        Allow from all
+    </IfVersion>
+    <IfVersion >= 2.4>
+        Require all granted
+    </IfVersion>
+</Directory>
