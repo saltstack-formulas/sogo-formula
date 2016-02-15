@@ -34,6 +34,8 @@ sogo-update-server-httpd:
     - template: jinja
     - defaults:
         config: {{ sogo.update_server }}
+    - require:
+      - file: sogo-updates.php
     - watch_in:
       - module: apache-reload
 
