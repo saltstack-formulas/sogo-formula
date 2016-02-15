@@ -1,4 +1,4 @@
-name: gocd
+name: sogo
 os: CentOS, Fedora
 os_family: RedHat
 version: 201601

@@ -25,7 +25,7 @@ sogo-config:
   file.managed:
     - name: /etc/sogo/sogo.conf
     - mode: 640
-    - group: {{ sogo.group }}
+    - group: sogo
     - contents: |
         {{ sogo.config|indent(8) }}
     - require:

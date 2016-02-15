@@ -1,4 +1,2 @@
 sogo:
-  user: sogo
-  group: sogo
   use_v3: True
