@@ -2,10 +2,13 @@
 
 include:
   - apache
+  - .sogo-integrator
 
 sogo-update-server-deps:
   pkg.installed:
     - name: php
+    - watch_in:
+      - module: apache-restart
 
 sogo-update-server-dir:
   file.directory:
@@ -34,8 +37,6 @@ sogo-update-server-httpd:
     - template: jinja
     - defaults:
         config: {{ sogo.update_server }}
-    - require:
-      - file: sogo-updates.php
     - watch_in:
       - module: apache-reload
 

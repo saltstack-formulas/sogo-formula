@@ -1,7 +1,7 @@
 name: sogo
-os: CentOS, Fedora
+os: CentOS
 os_family: RedHat
-version: 201601
+version: 201602
 release: 1
 dependencies: apache, memcached
 summary: Formula for installing the SOGo Groupware

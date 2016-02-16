@@ -32,3 +32,4 @@ Configures the SOGo repository for version 3.
 ----------------------
 
 Installs the SOGo update server, which can be used to automatically install Mozilla Thunderbird extensions.
+The update server will be available on http://localhost/mozilla-plugins/.
