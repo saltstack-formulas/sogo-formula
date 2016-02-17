@@ -52,5 +52,6 @@ sogo-integrator-preference-{{ key }}:
 
 sogo-integrator-xpi:
   cmd.wait:
-    - name: 'zip -FS -9 -r /tmp/sogo-integrator.xpi {{ workdir }}/*'
+    - name: 'zip -FS -9 -r /tmp/sogo-integrator.xpi *'
+    - cwd: {{ workdir }}
 {% endif %}
