@@ -4,6 +4,7 @@
 {% if integrator %}
 {% set version = integrator.version %}
 {% set workdir = '/tmp/sogo-integrator-workdir-' + version %}
+{% set file = '/tmp/sogo-integrator.xpi' %}
 
 sogo-integrator-deps:
   pkg.installed:
@@ -28,30 +29,42 @@ sogo-integrator-demo:
 sogo-integrator-updateurl:
   file.replace:
     - name: {{ workdir }}/chrome/content/extensions.rdf
-    - pattern: ^(.*updateURL)=".*/(updates\.php\?[^\"]*)"(.*)$
-    - repl: '\1="{{ sogo.update_server.url }}/\2"\3'
+    - pattern: |
+        (updateURL)=".*/(updates\.php\?[^\"]*)"(.*)$
+    - repl: |
+        \1="{{ sogo.update_server.url }}/\2"\3
     - backup: False
     - require:
       - archive: sogo-integrator-demo
     - watch_in:
-      - cmd: sogo-integrator-xpi
+      - cmd: sogo-integrator-xpi-delete
 
 {% for key, value in integrator.preferences.items() %}
 sogo-integrator-preference-{{ key }}:
   file.replace:
     - name: {{ workdir }}/defaults/preferences/site.js
-    - pattern: (pref\("{{ key }}").*$
-    - repl: '\1, {{ value|json }});'
+    - pattern: |
+        (pref\("{{ key }}").*$
+    - repl: |
+        pref("{{ key }}", {{ value|json }});
     - append_if_not_found: True
     - backup: False
     - require:
       - archive: sogo-integrator-demo
     - watch_in:
-      - cmd: sogo-integrator-xpi
+      - cmd: sogo-integrator-xpi-delete
 {% endfor %}
 
-sogo-integrator-xpi:
+sogo-integrator-xpi-delete:
   cmd.wait:
-    - name: 'zip -FS -9 -r /tmp/sogo-integrator.xpi *'
+    - name: 'rm -f {{ file }} *'
+    - onlyif: test -f {{ file }}
+
+sogo-integrator-xpi:
+  cmd.run:
+    - name: 'zip -FS -9 -r {{ file }} *'
     - cwd: {{ workdir }}
+    - unless: test -f {{ file }}
+    - require:
+      - cmd: sogo-integrator-xpi-delete
 {% endif %}

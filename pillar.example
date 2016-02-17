@@ -1,2 +1,7 @@
 sogo:
   url: http://sogo.example.com
+  update_server:
+    url: http://mozilla-updates.example.com
+    sogo-integrator:
+      preferences:
+        calendar.timezone.local: /mozilla.org/20070129_1/Europe/Berlin
