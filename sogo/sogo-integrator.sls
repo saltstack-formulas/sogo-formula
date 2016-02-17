@@ -28,8 +28,8 @@ sogo-integrator-demo:
 sogo-integrator-updateurl:
   file.replace:
     - name: {{ workdir }}/chrome/content/extensions.rdf
-    - pattern: ^(.*updateURL)="[^?]*\?([^\"]*)"(.*)$
-    - repl: '\1="{{ integrator.updateURL }}?\2"\3'
+    - pattern: ^(.*updateURL)=".*/(updates\.php\?[^\"]*)"(.*)$
+    - repl: '\1="{{ sogo.update_server.url }}/\2"\3'
     - backup: False
     - require:
       - archive: sogo-integrator-demo

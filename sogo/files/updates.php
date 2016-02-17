@@ -68,7 +68,13 @@ if ( $plugin ) {
             <em:version><?php echo $plugin["version"] ?></em:version>
             <em:targetApplication>
               <Description><?php echo $applications[$plugin["application"]] ?>
-                <em:updateLink><?php echo dirname(getenv('SCRIPT_URI')) . '/' . $plugin["filename"] ?></em:updateLink>
+                <em:updateLink>
+                {%- if config.get('url') -%}
+                {{ config.url }}/<?php echo $plugin["filename"] ?>
+                {%- else -%}
+                <?php echo dirname(getenv('SCRIPT_URI')) . '/' . $plugin["filename"] ?>
+                {%- endif -%}
+                </em:updateLink>
               </Description>
             </em:targetApplication>
           </Description>

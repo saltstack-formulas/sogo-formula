@@ -2,6 +2,7 @@ sogo:
   use_v3: True
   update_server:
     dir: /var/www/sogo-update-server
+    url: http://localhost/mozilla-plugins
     plugins:
       - id: sogo-connector@inverse.ca
         version: 31.0.2
@@ -11,7 +12,6 @@ sogo:
         url: file:///tmp/sogo-integrator.xpi
     sogo-integrator:
       version: 31.0.2
-      updateURL: http://localhost/mozilla-plugins/updates.php
       preferences:
         sogo-integrator.autocomplete.server.urlid: public
         calendar.timezone.local: /mozilla.org/20070129_1/Europe/Berlin
