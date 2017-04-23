@@ -15,15 +15,16 @@ sogo-integrator-deps:
 sogo-integrator-demo:
   cmd.run:
     - name: 'curl -Lf "http://www.sogo.nu/files/downloads/SOGo/Thunderbird/sogo-integrator-{{ version }}-sogo-demo.xpi" -o /tmp/sogo-integrator-demo-{{ version }}.xpi'
-    - prereq:
-      - archive: sogo-integrator-demo
+    - unless: 'test -f /tmp/sogo-integrator-demo-{{ version }}.xpi'
 
   archive.extracted:
     - name: /tmp/sogo-integrator-workdir-{{ version }}
     - source: /tmp/sogo-integrator-demo-{{ version }}.xpi
     - archive_format: zip
+    - enforce_toplevel: false
     - if_missing: {{ workdir }}
     - require:
+      - cmd: sogo-integrator-demo
       - pkg: sogo-integrator-deps
 
 sogo-integrator-updateurl:
