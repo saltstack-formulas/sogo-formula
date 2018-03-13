@@ -18,16 +18,6 @@ Available states
 
 Installs the SOGo Groupware.
 
-``sogo.repo-v2``
-----------------
-
-Configures the SOGo repository for version 2.
-
-``sogo.repo-v3``
-----------------
-
-Configures the SOGo repository for version 3.
-
 ``sogo.update-server``
 ----------------------
 
