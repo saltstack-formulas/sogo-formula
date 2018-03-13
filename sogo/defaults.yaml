@@ -1,5 +1,5 @@
 sogo:
-  use_v3: True
+  version: 4
   update_server:
     dir: /var/www/sogo-update-server
     url: http://localhost/mozilla-plugins

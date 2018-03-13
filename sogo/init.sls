@@ -1,9 +1,14 @@
 {% from "sogo/map.jinja" import sogo with context %}
 
 include:
-  - .{{ 'repo-v3' if sogo.use_v3 else 'repo-v2' }}
   - apache
   - memcached
+
+sogo-repo:
+  pkgrepo.managed:
+    - humanname: Inverse SOGo Repository
+    - baseurl: http://packages.inverse.ca/SOGo/nightly/{{ sogo.version }}/rhel/$releasever/$basearch
+    - gpgcheck: 0
 
 sogo:
   pkg.installed:
