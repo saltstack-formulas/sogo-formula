@@ -18,6 +18,8 @@ sogo:
       - sogo-ealarms-notify
       - sope49-gdl1-postgresql
       - sope49-gdl1-mysql
+    - require:
+      - pkgrepo: sogo-repo
 
   service.running:
     - name: sogod
