@@ -24,7 +24,7 @@ sogo-updates.php:
     - template: jinja
     - makedirs: True
     - defaults:
-        config: {{ sogo.update_server }}
+        config: {{ sogo.update_server|json }}
     - require:
       - pkg: sogo-update-server-deps
     - require_in:
@@ -36,7 +36,7 @@ sogo-update-server-httpd:
     - source: salt://sogo/files/sogo-update-server-httpd
     - template: jinja
     - defaults:
-        config: {{ sogo.update_server }}
+        config: {{ sogo.update_server|json }}
     - watch_in:
       - module: apache-reload
 
@@ -58,3 +58,4 @@ sogo-update-server-plugin-{{ plugin.id }}:
     - require_in:
       - file: sogo-update-server-dir
 {% endfor %}
+
