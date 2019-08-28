@@ -2,8 +2,8 @@
 sogo-formula
 ============
 
-.. image:: https://travis-ci.org/saltstack-formulas/sogo-formula.svg?branch=master
-    :target: https://travis-ci.org/saltstack-formulas/sogo-formula
+.. image:: https://travis-ci.com/saltstack-formulas/sogo-formula.svg?branch=master
+    :target: https://travis-ci.com/saltstack-formulas/sogo-formula
 
 Installs the SOGo Groupware.
 
