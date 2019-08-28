@@ -5,13 +5,13 @@ sogo:
     url: http://localhost/mozilla-plugins
     plugins:
       - id: sogo-connector@inverse.ca
-        version: 31.0.6
-        url: http://www.sogo.nu/files/downloads/SOGo/Thunderbird/sogo-connector-31.0.6.xpi
+        version: 60.0.2
+        url: http://www.sogo.nu/files/downloads/SOGo/Thunderbird/sogo-connector-60.0.2.xpi
       - id: sogo-integrator@inverse.ca
-        version: 31.0.6
+        version: 60.0.2
         url: file:///tmp/sogo-integrator.xpi
     sogo-integrator:
-      version: 31.0.6
+      version: 60.0.2
       preferences:
         sogo-integrator.autocomplete.server.urlid: public
         calendar.timezone.local: /mozilla.org/20070129_1/Europe/Berlin
