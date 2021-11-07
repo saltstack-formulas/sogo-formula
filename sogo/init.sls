@@ -59,4 +59,4 @@ sogo-httpd:
     - require:
       - pkg: sogo
     - watch_in:
-      - module: apache-reload
+      - module: apache-service-running-reload

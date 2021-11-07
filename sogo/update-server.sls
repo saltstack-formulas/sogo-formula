@@ -8,7 +8,7 @@ sogo-update-server-deps:
   pkg.installed:
     - name: php
     - watch_in:
-      - module: apache-restart
+      - module: apache-service-running-restart
 
 sogo-update-server-dir:
   file.directory:
@@ -38,7 +38,7 @@ sogo-update-server-httpd:
     - defaults:
         config: {{ sogo.update_server|json }}
     - watch_in:
-      - module: apache-reload
+      - module: apache-service-running-reload
 
 {% for plugin in sogo.update_server.get('plugins', []) %}
 {% set file = sogo.update_server.dir + '/' + plugin.id + '-' + plugin.version + '.xpi' %}
