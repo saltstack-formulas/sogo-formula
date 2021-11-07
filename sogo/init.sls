@@ -7,7 +7,7 @@ include:
 sogo-repo:
   pkgrepo.managed:
     - humanname: Inverse SOGo Repository
-    - baseurl: http://packages.inverse.ca/SOGo/nightly/{{ sogo.version }}/rhel/$releasever/$basearch
+    - baseurl: https://packages.inverse.ca/SOGo/nightly/{{ sogo.version }}/rhel/$releasever/$basearch
     - gpgcheck: 0
 
 sogo:
