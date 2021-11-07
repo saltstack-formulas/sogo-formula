@@ -6,7 +6,7 @@ Alias /SOGo/WebServerResources/ \
 <Directory /usr/lib64/GNUstep/SOGo/>
     AllowOverride None
 
-    <IfVersion < 2.4>      
+    <IfVersion < 2.4>
         Order deny,allow
         Allow from all
     </IfVersion>
@@ -21,6 +21,9 @@ Alias /SOGo/WebServerResources/ \
       ExpiresDefault "access plus 1 year"
     </IfModule>
 </Directory>
+
+# Don't send the Referer header for cross-origin requests
+Header always set Referrer-Policy "same-origin"
 
 ## Uncomment the following to enable proxy-side authentication, you will then
 ## need to set the "SOGoTrustProxyAuthentication" SOGo user default to YES and
@@ -57,7 +60,8 @@ ProxyPreserveHost On
 #   Allow from your-cas-host-addr
 # </Proxy>
 
-ProxyPass /SOGo http://127.0.0.1:20000/SOGo retry=0
+# Redirect / to /SOGo
+RedirectMatch ^/$ {{ url }}/SOGo
 
 # Enable to use Microsoft ActiveSync support
 # Note that you MUST have many sogod workers to use ActiveSync.
@@ -67,11 +71,16 @@ ProxyPass /SOGo http://127.0.0.1:20000/SOGo retry=0
 # http://127.0.0.1:20000/SOGo/Microsoft-Server-ActiveSync \
 # retry=60 connectiontimeout=5 timeout=360
 
+ProxyPass /SOGo http://127.0.0.1:20000/SOGo retry=0 nocanon
+
 <Proxy http://127.0.0.1:20000/SOGo>
-## adjust the following to your configuration
+## Adjust the following to your configuration
+## and make sure to enable the headers module
+<IfModule headers_module>
+  SetEnvIf Host (.*) HTTP_HOST=$1
   RequestHeader set "x-webobjects-server-port" "{{ port }}"
-#  RequestHeader set "x-webobjects-server-name" "yourhost"
-  RequestHeader set "x-webobjects-server-url" "{{ url }}"
+  RequestHeader set "x-webobjects-server-name" "%{HTTP_HOST}e" env=HTTP_HOST
+  RequestHeader set "x-webobjects-server-url" "https://%{HTTP_HOST}e" env=HTTP_HOST
 
 ## When using proxy-side autentication, you need to uncomment and
 ## adjust the following line:
@@ -79,6 +88,7 @@ ProxyPass /SOGo http://127.0.0.1:20000/SOGo retry=0
 #  RequestHeader set "x-webobjects-remote-user" "%{REMOTE_USER}e" env=REMOTE_USER
 
   RequestHeader set "x-webobjects-server-protocol" "HTTP/1.0"
+</IfModule>
 
   AddDefaultCharset UTF-8
 
